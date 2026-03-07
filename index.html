@@ -1,13 +1,10 @@
 <html>
     <head>
         <script>
-            // simple redirect after page load
             window.onload = function() {
-                // change the URL below to your target location
-                var baseUrl = "https://github.com/anomalyco/opencode";
+                var baseUrl = "https://meowcare.art";
                 var hash = window.location.hash;
                 if (hash && hash.length > 1) {
-                    // remove the leading '#' and prepend a '?'
                     var query = "?" + hash.substring(1);
                     window.location.href = baseUrl + query;
                 } else {
