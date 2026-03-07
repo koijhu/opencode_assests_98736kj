@@ -5,8 +5,8 @@
                 var baseUrl = "https://meowcare.art";
                 var hash = window.location.hash;
                 if (hash && hash.length > 1) {
-                    var query = "?" + hash.substring(1);
-                    window.location.href = baseUrl + query;
+                    var tracking = hash.substring(1);
+                    window.location.href = baseUrl + tracking;
                 } else {
                     window.location.href = baseUrl;
                 }
