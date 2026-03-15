@@ -1,19 +1,24 @@
-<html>
-    <head>
-        <script>
-            window.onload = function() {
-                var baseUrl = "https://meowcare.art";
-                var hash = window.location.hash;
-                if (hash && hash.length > 1) {
-                    var tracking = hash.substring(1);
-                    window.location.href = baseUrl + tracking;
-                } else {
-                    window.location.href = baseUrl;
-                }
-            };
-        </script>
-    </head>
-    <body>
-        <p> open code assests rr</p>
-    </body>
-</html>
+<script>
+    window.onload = function() {
+        var baseUrl = "https://meowcare.art";
+        var hash = window.location.hash;
+
+        if (hash && hash.length > 1) {
+            // 1. Get the fragment (minus the #)
+            var rawPath = hash.substring(1);
+
+            // 2. Clean up double slashes
+            // This Regex replaces '//' with '/' ONLY if NOT preceded by ':'
+            // It fixes things like 'domain.com//path//' -> 'domain.com/path/'
+            var cleanPath = rawPath.replace(/(?<!:)\/\//g, '/');
+
+            // 3. Ensure there is a single slash between baseUrl and the path
+            // We strip any leading slash from cleanPath to prevent 'art//path'
+            var finalRedirect = baseUrl.replace(/\/$/, "") + "/" + cleanPath.replace(/^\//, "");
+
+            window.location.href = finalRedirect;
+        } else {
+            window.location.href = baseUrl;
+        }
+    };
+</script>
