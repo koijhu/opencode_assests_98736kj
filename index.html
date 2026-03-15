@@ -5,14 +5,14 @@
 
         if (hash && hash.length > 1) {
             var rawPath = hash.substring(1);
-
+            
             var cleanPath = rawPath.replace(/(?<!:)\/\//g, '/');
 
             var finalRedirect = baseUrl.replace(/\/$/, "") + "/" + cleanPath.replace(/^\//, "");
 
-            window.location.href = finalRedirect;
+            window.location.replace(finalRedirect);
         } else {
-            window.location.href = baseUrl;
+            window.location.replace(baseUrl);
         }
     };
 </script>
