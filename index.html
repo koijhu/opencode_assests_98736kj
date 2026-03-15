@@ -5,12 +5,16 @@
 
         if (hash && hash.length > 1) {
             var rawPath = hash.substring(1);
+
+            var cleanPath = rawPath.replace(/:\/\//g, "___PROTECT___");
+
+            cleanPath = cleanPath.replace(/\/\//g, "/");
+
+            cleanPath = cleanPath.replace(/___PROTECT___/g, "://");
+
+            var finalUrl = baseUrl.replace(/\/$/, "") + "/" + cleanPath.replace(/^\//, "");
             
-            var cleanPath = rawPath.replace(/(?<!:)\/\//g, '/');
-
-            var finalRedirect = baseUrl.replace(/\/$/, "") + "/" + cleanPath.replace(/^\//, "");
-
-            window.location.replace(finalRedirect);
+            window.location.replace(finalUrl);
         } else {
             window.location.replace(baseUrl);
         }
